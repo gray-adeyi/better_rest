@@ -1,0 +1,5 @@
+db.sqlite3
+better_rest/__pycache__
+snippets/__pycache__
+snippets/migrations/__pycache__
+*.swp
