@@ -13,5 +13,7 @@ go after installing the current versions
 of these python packages.
 
 ## Setup
-`bash pip3 install django, djangorestframework, pygments
-./manage.py runserver`
+```bash 
+cd better_rest/ &&
+pip3 install django, djangorestframework, pygments &&
+./manage.py runserver```
