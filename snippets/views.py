@@ -1,11 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
+from rest_framework.decorators import api_view
+from rest_framework.response import Response 
 from . import serializers, models
 # Create your views here.
 
-@csrf_exempt
+@api_view(['GET','POST'])
 def snippet_list(request):
     """
     List all the code snippets or create
@@ -14,9 +13,9 @@ def snippet_list(request):
     if request.method == 'GET':
         snippets = models.Snippet.objects.all()
         serializer = serializers.SnippetSerializer(snippets, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
     if request.method == 'POST':
-         data = JSONParser().parse(requset)
+         data = JSONParser().parse(request)
          serializer = serializers.SnippetSerializer(data=data)
          if serializer.is_valid():
              serializer.save()
